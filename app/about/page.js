@@ -7,8 +7,6 @@ import { urlFor } from '@/sanity/lib/image';
 import EmailCopy from '@/components/EmailCopy';
 import Link from 'next/link';
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
 const awards = [
   { category: '22+1 - British Short Film', festival: '(Longlist) BAFTA', year: '2026' },
   { category: 'Tonight - Music Video of the Year', festival: '(Nominated) EDMAs', year: '2026' },
@@ -67,10 +65,7 @@ const certLogos = [
   { file: 'bectu.png', label: 'BECTU' },
 ];
 
-// Derived from JSX — update this if you add/remove slides
 const TOTAL_SECTIONS = 9;
-
-// ─── Animation variants ────────────────────────────────────────────────────────
 
 const containerVars = {
   hidden: { opacity: 0 },
@@ -81,8 +76,6 @@ const itemVars = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
 };
-
-// ─── SVG Reef icons ────────────────────────────────────────────────────────────
 
 const ReefLeft = () => (
   <svg width="22" height="22" viewBox="-1 0 11 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ color: 'white', flexShrink: 0 }}>
@@ -96,21 +89,26 @@ const ReefRight = () => (
   </svg>
 );
 
-// ─── Component ─────────────────────────────────────────────────────────────────
-
 export default function AboutPage() {
   const [heroImage, setHeroImage] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // FIX: track current index in a ref so event listeners never capture a stale value
   const activeIndexRef = useRef(0);
   const isAnimating = useRef(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
 
-  // FIX: stable navigate function — created once, reads from ref
   const navigate = useCallback((direction) => {
     if (isAnimating.current) return;
     const next = Math.max(0, Math.min(TOTAL_SECTIONS - 1, activeIndexRef.current + direction));
@@ -139,53 +137,45 @@ export default function AboutPage() {
     fetchHero();
   }, []);
 
-  // Wheel navigation — registered once, uses stable navigate()
- useEffect(() => {
+  // Desktop wheel navigation only
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleWheel = (e) => {
       if (Math.abs(e.deltaY) < 10) return;
       navigate(e.deltaY > 0 ? 1 : -1);
     };
 
-    let touchStartY = 0;
-
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
-      if (Math.abs(diff) < 30) return;
-      navigate(diff > 0 ? 1 : -1);
-    };
-
     window.addEventListener('wheel', handleWheel, { passive: true });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [navigate, isMobile]);
 
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [navigate]);
-
-  // FIX: keyboard navigation for accessibility
+  // Desktop keyboard navigation only
   useEffect(() => {
+    if (isMobile) return;
+
     const handleKey = (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') navigate(1);
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') navigate(-1);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [navigate]);
+  }, [navigate, isMobile]);
 
   return (
     <main
       onContextMenu={(e) => e.preventDefault()}
-      style={{ backgroundColor: 'black', height: '100vh', width: '100%', position: 'relative', overflow: 'hidden', margin: 0, padding: 0 }}
+      style={{
+        backgroundColor: 'black',
+        height: isMobile ? 'auto' : '100vh',
+        width: '100%',
+        position: 'relative',
+        overflow: isMobile ? 'visible' : 'hidden',
+        margin: 0,
+        padding: 0,
+      }}
     >
-      {/* ── Nav ── */}
+      {/* Nav */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', zIndex: 1000, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', display: 'flex', justifyContent: 'center' }}>
         <div className="nav-container">
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
@@ -201,12 +191,15 @@ export default function AboutPage() {
         </div>
       </nav>
 
-      {/* ── Slide container ── */}
-      <div className="master-container" style={{ transform: `translateY(-${activeIndex * 100}dvh)` }}>
+      {/* Slide container */}
+      <div
+        className="master-container"
+        style={{ transform: isMobile ? 'none' : `translateY(-${activeIndex * 100}dvh)` }}
+      >
 
         {/* SLIDE 1: PORTRAIT */}
         <section className="snap-section">
-          <div className="container-base" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="container-base" style={{ height: isMobile ? 'auto' : '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: isMobile ? '100px' : '0', paddingBottom: isMobile ? '60px' : '0' }}>
             <motion.div
               initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
               whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
@@ -233,7 +226,7 @@ export default function AboutPage() {
 
         {/* SLIDE 2: STATEMENT */}
         <section className="snap-section">
-          <div className="container-base" style={{ textAlign: 'center' }}>
+          <div className="container-base" style={{ textAlign: 'center', paddingTop: isMobile ? '60px' : '0', paddingBottom: isMobile ? '60px' : '0' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'white', fontSize: 'clamp(32px, 4vw, 54px)', textTransform: 'none', lineHeight: 1.2 }}>
               Mark A. Lane is a{' '}
               <motion.span
@@ -256,7 +249,7 @@ export default function AboutPage() {
 
         {/* SLIDE 3: BIO */}
         <section className="snap-section">
-          <div className="container-base">
+          <div className="container-base" style={{ paddingTop: isMobile ? '60px' : '0', paddingBottom: isMobile ? '60px' : '0' }}>
             <div className="mobile-stack-bio" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: '100px', alignItems: 'center' }}>
               <div className="mobile-bio-img" style={{ width: '100%', maxWidth: '380px', aspectRatio: '4/5', background: '#111', borderRadius: '24px', overflow: 'hidden' }}>
                 <img
@@ -283,13 +276,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* SLIDES 4–5: AWARDS & PRESS */}
+        {/* SLIDES 4-5: AWARDS & PRESS */}
         {[
           { title: 'Awards', data: awards, type: 'awards' },
           { title: 'Press', data: press, type: 'press' },
         ].map((section, idx) => (
           <section key={idx} className="snap-section">
-            <div className="container-base">
+            <div className="container-base" style={{ paddingTop: isMobile ? '60px' : '0', paddingBottom: isMobile ? '60px' : '0' }}>
               <div className="container-responsive">
                 <h2 className="external-title" style={{ fontSize: 'clamp(40px, 6vw, 90px)' }}>{section.title}</h2>
                 <motion.div variants={containerVars} initial="hidden" whileInView="show">
@@ -323,14 +316,14 @@ export default function AboutPage() {
           </section>
         ))}
 
-        {/* SLIDES 6–8: LOGO GRIDS */}
+        {/* SLIDES 6-8: LOGO GRIDS */}
         {[
           { title: 'Clients', data: clientLogos, cols: 5, maxWidth: '900px' },
           { title: 'Partners & Suppliers', data: partnerLogos, cols: 3, maxWidth: '600px' },
           { title: 'Certifications', data: certLogos, cols: 3, maxWidth: '600px' },
         ].map((section, idx) => (
           <section key={idx} className="snap-section">
-            <div className="container-base" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+            <div className="container-base" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', paddingTop: isMobile ? '60px' : '0', paddingBottom: isMobile ? '60px' : '0' }}>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -346,7 +339,6 @@ export default function AboutPage() {
                 className={`logo-grid ${section.cols === 3 ? 'partner-grid' : ''}`}
                 style={{ maxWidth: section.maxWidth, margin: '0 auto' }}
               >
-                {/* FIX: meaningful alt text on every logo */}
                 {section.data.map((logo, i) => (
                   <motion.div variants={itemVars} key={i} className="logo-box">
                     <img
@@ -368,13 +360,13 @@ export default function AboutPage() {
 
         {/* SLIDE 9: CONTACT */}
         <section className="snap-section">
-          <div style={{ height: '100vh', width: '100%', padding: '64px', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="contact-slide-inner" style={{ height: isMobile ? 'auto' : '100vh', width: '100%', padding: '64px', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <motion.div
               initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
               whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
               viewport={{ once: false }}
               transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{ width: '100%', height: '100%', backgroundColor: '#111', borderRadius: '40px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+              style={{ width: '100%', height: isMobile ? '80vh' : '100%', backgroundColor: '#111', borderRadius: '40px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
             >
               {heroImage && (
                 <motion.img
