@@ -329,8 +329,9 @@ img {
   }
 
   .home-card-footer {
-  bottom: 16px !important;
-  width: calc(100% - 32px) !important;
+  bottom: 30px !important;
+  font-size: 0.6rem;
+  width: calc(100% - 40px) !important;
   }
 
   /* About page */
