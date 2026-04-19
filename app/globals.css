@@ -233,6 +233,7 @@ img {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
 /* ─── Mobile overrides ──────────────────────────── */
 @media (max-width: 768px) {
   .container-base {

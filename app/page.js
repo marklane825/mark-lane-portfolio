@@ -21,7 +21,6 @@ export default function HomePage() {
 
         if (data.length > 0) {
           const randomIndex = Math.floor(Math.random() * data.length);
-          // BEST PRACTICES FIX: Cap width at 2500 for the robot, but keep 100 quality for the human
           finalUrl = urlFor(data[randomIndex].coverImage)
             .width(2500)
             .quality(100)
@@ -64,16 +63,19 @@ export default function HomePage() {
   const lastName = "Lane";
 
   return (
-    <main onContextMenu={(e) => e.preventDefault()} style={{ backgroundColor: 'black', minHeight: '100vh', width: '100%', overflow: 'hidden' }}>
+    <main onContextMenu={(e) => e.preventDefault()} style={{ backgroundColor: 'black', height: '100vh', width: '100%', overflow: 'hidden' }}>
 
-      <section className="container-base" style={{ height: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <section style={{ height: '100vh', width: '100%', position: 'relative', backgroundColor: 'black', overflow: 'hidden' }}>
         <motion.div
           initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
           transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'absolute',
-            inset: '40px',
+            top: '40px',
+            bottom: '40px',
+            left: '40px',
+            right: '40px',
             backgroundColor: '#111',
             borderRadius: '40px',
             overflow: 'hidden',
@@ -88,7 +90,6 @@ export default function HomePage() {
               animate={{ scale: 1 }}
               transition={{ duration: 4, ease: [0.16, 1, 0.3, 1] }}
               src={heroImage}
-              // BEST PRACTICES FIX: Provide dimensions to satisfy the robot
               width="1920"
               height="1080"
               style={{ 
@@ -105,7 +106,7 @@ export default function HomePage() {
 
           <div className="header-wrapper" style={{ flexDirection: 'column', lineHeight: 0.85, position: 'relative', zIndex: 20 }}>
             <h1 style={{ fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex' }}>
                 {firstName.split("").map((char, idx) => (
                   <span key={idx} className="char-mask">
                     <motion.span
@@ -149,9 +150,17 @@ export default function HomePage() {
       </section>
 
       <footer style={{
-        position: 'fixed', bottom: '60px', left: '80px', right: '80px',
-        display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.3)',
-        fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.2em', zIndex: 30
+        position: 'fixed',
+        bottom: '60px',
+        left: '80px',
+        right: '80px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        color: 'rgba(255,255,255,0.3)',
+        fontSize: '0.7rem',
+        textTransform: 'uppercase',
+        letterSpacing: '0.2em',
+        zIndex: 30
       }}>
         <div>London / UK</div>
         <div>© 2026 Lane Lighting</div>
