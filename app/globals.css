@@ -301,7 +301,7 @@ img {
 }
 
 /* ─── Small screen overrides (phones only) ──────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container-base {
     padding: 0 20px;
   }
