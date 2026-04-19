@@ -67,24 +67,24 @@ export default function HomePage() {
 
       <section style={{ height: '100vh', width: '100%', position: 'relative', backgroundColor: 'black', overflow: 'hidden' }}>
         <motion.div
-  className="home-bezel"
-  initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
-  animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
-  transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
-  style={{
-    position: 'absolute',
-    top: '40px',
-    bottom: '40px',
-    left: '40px',
-    right: '40px',
-    backgroundColor: '#111',
-    borderRadius: '40px',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }}
->
+          className="home-bezel"
+          initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
+          transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            position: 'absolute',
+            top: '40px',
+            bottom: '40px',
+            left: '40px',
+            right: '40px',
+            backgroundColor: '#111',
+            borderRadius: '40px',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
           {heroImage && (
             <motion.img
               initial={{ scale: 1.2 }}
@@ -147,25 +147,29 @@ export default function HomePage() {
               <Link href="/about" className="home-nav-item">About</Link>
             </motion.div>
           </div>
+
+          {/* Footer inside the card */}
+          <footer style={{
+            position: 'absolute',
+            bottom: '40px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100% - 80px)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            color: 'rgba(255,255,255,0.3)',
+            fontSize: '0.7rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+            zIndex: 30
+          }}>
+            <div>London / UK</div>
+            <div>© 2026 Lane Lighting</div>
+          </footer>
+
         </motion.div>
       </section>
 
-      <footer className="home-footer" style={{
-        position: 'fixed',
-        bottom: '60px',
-        left: '80px',
-        right: '80px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        color: 'rgba(255,255,255,0.3)',
-        fontSize: '0.7rem',
-        textTransform: 'uppercase',
-        letterSpacing: '0.2em',
-        zIndex: 30
-      }}>
-        <div>London / UK</div>
-        <div>© 2026 Lane Lighting</div>
-      </footer>
     </main>
   );
 }

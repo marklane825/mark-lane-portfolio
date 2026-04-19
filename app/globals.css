@@ -328,12 +328,6 @@ img {
     bottom: 30px;
   }
 
-  .home-footer {
-  bottom: 16px !important;
-  left: 20px !important;
-  right: 20px !important;
-  }
-
   /* About page */
   .container-responsive {
     grid-template-columns: 1fr;
