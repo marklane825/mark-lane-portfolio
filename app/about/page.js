@@ -140,13 +140,34 @@ export default function AboutPage() {
   }, []);
 
   // Wheel navigation — registered once, uses stable navigate()
-  useEffect(() => {
+ useEffect(() => {
     const handleWheel = (e) => {
       if (Math.abs(e.deltaY) < 10) return;
       navigate(e.deltaY > 0 ? 1 : -1);
     };
+
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) < 30) return;
+      navigate(diff > 0 ? 1 : -1);
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: true });
-    return () => window.removeEventListener('wheel', handleWheel);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [navigate]);
 
   // FIX: keyboard navigation for accessibility
