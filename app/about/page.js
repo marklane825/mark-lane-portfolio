@@ -218,7 +218,7 @@ export default function AboutPage() {
                 transition={{ duration: 1.5, delay: 0.6, ease: 'easeOut' }}
                 src="/images/headshot.jpg"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                alt="Portrait of Mark A. Lane, Gaffer and Lighting Technician"
+                alt="Portrait of Mark A. Lane, Gaffer and Lighting Technician, London Based Gaffer, Chief Lighting Technician"
               />
             </motion.div>
           </div>
@@ -259,7 +259,7 @@ export default function AboutPage() {
                   draggable="false"
                   src="/images/set-photo.jpg"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  alt="Mark A. Lane working on set"
+                  alt="Mark A. Lane working on set of Pink Pantheress Stateside Ft. Zara Larson, London Based Gaffer, Chief Lighting Technician"
                   loading="lazy"
                 />
               </div>

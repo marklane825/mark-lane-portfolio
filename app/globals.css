@@ -32,6 +32,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   /* Dark mode scrollbars and system UI */
   color-scheme: dark;
+  overscroll-behavior: none;
+
 }
 
 /* Ensure headings use your display font by default */
