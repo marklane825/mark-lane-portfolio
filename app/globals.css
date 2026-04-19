@@ -238,6 +238,69 @@ img {
 }
 
 /* ─── Mobile overrides ──────────────────────────── */
+@media (hover: none) {
+
+  /* Project title always visible on touch */
+  .mobile-frost-show {
+    opacity: 1 !important;
+    background: rgba(0,0,0,0.35) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-bottom: 0 !important;
+  }
+
+  .mobile-frost-show h3 {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+  }
+
+  /* About page continuous scroll on touch */
+  .snap-section {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 80px 0 60px 0;
+  }
+
+  .master-container {
+    height: auto !important;
+  }
+}
+
+/* ─── Small screen overrides (phones only) ──────────────────────────────── */
+/* ─── Touch device overrides (iPhone, iPad, Android) ──────────────────── */
+@media (hover: none) {
+
+  /* Project title always visible on touch */
+  .mobile-frost-show {
+    opacity: 1 !important;
+    background: rgba(0,0,0,0.35) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-bottom: 0 !important;
+  }
+
+  .mobile-frost-show h3 {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+  }
+
+  /* About page continuous scroll on touch */
+  .snap-section {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 80px 0 60px 0;
+  }
+
+  .master-container {
+    height: auto !important;
+  }
+}
+
+/* ─── Small screen overrides (phones only) ──────────────────────────────── */
 @media (max-width: 768px) {
   .container-base {
     padding: 0 20px;
@@ -264,12 +327,12 @@ img {
   }
 
   .home-bezel {
-  top: 20px !important;
-  bottom: 20px !important;
-  left: 20px !important;
-  right: 20px !important;
-  border-radius: 24px !important;
-}
+    top: 20px !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    border-radius: 24px !important;
+  }
 
   /* Lighting page */
   .hero-bezel {
@@ -288,22 +351,6 @@ img {
   .header-wrapper {
     font-size: 60px !important;
   }
-
-  /* Mobile project title — always visible */
-.mobile-frost-show {
-  opacity: 1 !important;
-  background: rgba(0,0,0,0.35) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding-bottom: 0 !important;
-}
-
-.mobile-frost-show h3 {
-  font-size: 1.2rem !important;
-  text-align: center !important;
-}
 
   /* Footer */
   .mobile-hide {
@@ -329,9 +376,9 @@ img {
   }
 
   .home-card-footer {
-  bottom: 20px !important;
-  font-size: 0.6rem !important;
-  width: calc(100% - 20px) !important;
+    bottom: 20px !important;
+    font-size: 0.6rem !important;
+    width: calc(100% - 20px) !important;
   }
 
   /* About page */
@@ -364,20 +411,13 @@ img {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
+
   .contact-slide-inner {
     padding: 20px !important;
   }
+
   .mobile-bio-img {
     max-width: 100% !important;
     height: 300px !important;
-  }
-  .snap-section {
-  height: auto !important;
-  min-height: unset !important;
-  padding: 80px 0 60px 0;
-  }
-
-.master-container {
-  height: auto !important;
   }
 }

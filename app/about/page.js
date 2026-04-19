@@ -99,7 +99,7 @@ export default function AboutPage() {
 
   // Detect mobile
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
+    const check = () => setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
