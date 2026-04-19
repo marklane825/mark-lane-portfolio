@@ -67,23 +67,24 @@ export default function HomePage() {
 
       <section style={{ height: '100vh', width: '100%', position: 'relative', backgroundColor: 'black', overflow: 'hidden' }}>
         <motion.div
-          initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
-          animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
-          transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            position: 'absolute',
-            top: '40px',
-            bottom: '40px',
-            left: '40px',
-            right: '40px',
-            backgroundColor: '#111',
-            borderRadius: '40px',
-            overflow: 'hidden',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
+  className="hero-bezel"
+  initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
+  animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
+  transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
+  style={{
+    position: 'absolute',
+    top: '40px',
+    bottom: '40px',
+    left: '40px',
+    right: '40px',
+    backgroundColor: '#111',
+    borderRadius: '40px',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
           {heroImage && (
             <motion.img
               initial={{ scale: 1.2 }}
