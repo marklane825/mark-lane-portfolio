@@ -202,7 +202,7 @@ export default function AboutPage() {
       </nav>
 
       {/* ── Slide container ── */}
-      <div className="master-container" style={{ transform: `translateY(-${activeIndex * 100}vh)` }}>
+      <div className="master-container" style={{ transform: `translateY(-${activeIndex * 100}dvh)` }}>
 
         {/* SLIDE 1: PORTRAIT */}
         <section className="snap-section">
