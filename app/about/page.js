@@ -366,7 +366,7 @@ export default function AboutPage() {
               whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
               viewport={{ once: false }}
               transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{ width: '100%', height: isMobile ? '80vh' : '100%', backgroundColor: '#111', borderRadius: '40px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+              style={{ width: '100%', height: isMobile ? '95vh' : '100%', backgroundColor: '#111', borderRadius: '40px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
             >
               {heroImage && (
                 <motion.img
