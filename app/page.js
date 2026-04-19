@@ -149,7 +149,7 @@ export default function HomePage() {
           </div>
 
           {/* Footer inside the card */}
-          <footer style={{
+          <footer home-card-footer style={{
             position: 'absolute',
             bottom: '40px',
             left: '50%',

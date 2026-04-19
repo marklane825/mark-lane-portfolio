@@ -328,6 +328,11 @@ img {
     bottom: 30px;
   }
 
+  .home-card-footer {
+  bottom: 16px !important;
+  width: calc(100% - 32px) !important;
+  }
+
   /* About page */
   .container-responsive {
     grid-template-columns: 1fr;
