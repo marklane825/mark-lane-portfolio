@@ -176,7 +176,7 @@ export default function AboutPage() {
       }}
     >
       {/* Nav */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', zIndex: 1000, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', display: 'flex', justifyContent: 'center' }}>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', zIndex: 1000, backgroundColor: 'rgba(0, 0, 0, 0.05)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', display: 'flex', justifyContent: 'center' }}>
         <div className="nav-container">
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
             <Link href="/lighting" className="nav-item">Lighting</Link>
