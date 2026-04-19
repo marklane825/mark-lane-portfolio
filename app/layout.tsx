@@ -32,8 +32,8 @@ export const metadata = {
     default: "Mark A. Lane | Gaffer & Lighting Technician | London",
     template: "%s | Mark A. Lane"
   },
-  description: "Professional Gaffer and Lighting Technician based in London. Specializing in high-end Narrative, Commercial, and Music Video lighting.",
-  keywords: ["Gaffer", "London Gaffer", "Lighting Technician", "Film Lighting", "Mark A Lane", "Cinematography"],
+  description: "Mark A. Lane — London based Gaffer & Chief Lighting Technician. Specialising in Narrative Film, Commercial and Music Video production. Your project is the mission.",
+  keywords: ["Gaffer", "London Gaffer", "Chief Lighting Technician", "Lighting Technician", "Film Lighting", "Mark A Lane", "Mark Lane", "Cinematography", "Commercials", "TVC Gaffer", "Music Video Gaffer", "Narrative Film Gaffer", "Film Gaffer London", "Commercial Gaffer London", "Gaffer for Hire", "Gaffer UK", "BBC Gaffer", "Netflix Production", "Film Crew London", "Lighting Design", "BECTU", "Lane Lighting"],
   metadataBase: new URL('https://mark-lane.co.uk'),
   themeColor: '#000000',
   verification: {
@@ -74,8 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "addressCountry": "UK"
     },
     "sameAs": [
-      "https://instagram.com/mark.lane_"
-    ],
+  "https://instagram.com/mark.lane_",
+  "https://wa.me/447957010154"
+],
     "knowsAbout": ["Lighting Design", "Cinematography", "Film Production", "Gaffing"]
   };
 

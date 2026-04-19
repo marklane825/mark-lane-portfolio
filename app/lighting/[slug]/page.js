@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, X, Play } from 'lucide-react';
 
+
 const builder = createImageUrlBuilder(client);
 function urlFor(source) {
   if (!source || !source.asset) return null;

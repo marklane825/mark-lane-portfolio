@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
+import EmailCopy from '@/components/EmailCopy';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { X } from 'lucide-react';
@@ -145,6 +146,8 @@ export default function LightingPage() {
         </div>
       </section>
 
+    <EmailCopy />
+    
    {/* --- FOOTER --- */}
      <footer className="container-base" style={{ 
   paddingBottom: '64px', 
