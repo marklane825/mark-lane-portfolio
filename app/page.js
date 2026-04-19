@@ -67,7 +67,7 @@ export default function HomePage() {
 
       <section style={{ height: '100vh', width: '100%', position: 'relative', backgroundColor: 'black', overflow: 'hidden' }}>
         <motion.div
-  className="hero-bezel"
+  className="home-bezel"
   initial={{ clipPath: 'inset(99% 49% 0% 49% round 100px)' }}
   animate={{ clipPath: 'inset(0% 0% 0% 0% round 40px)' }}
   transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1] }}
