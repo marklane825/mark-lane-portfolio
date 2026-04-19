@@ -150,7 +150,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <footer style={{
+      <footer className="home-footer" style={{
         position: 'fixed',
         bottom: '60px',
         left: '80px',

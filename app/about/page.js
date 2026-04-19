@@ -125,7 +125,7 @@ export default function AboutPage() {
         const data = await client.fetch(`*[_type == "project" && isHeroProject == true && defined(coverImage)]`);
         if (data.length > 0) {
           const pick = data[Math.floor(Math.random() * data.length)];
-          setHeroImage(urlFor(pick.coverImage)?.width(1200).quality(90).auto('format').url() ?? '');
+          setHeroImage(urlFor(pick.coverImage)?.quality(100).auto('format').url() ?? '');
         } else {
           const fallback = await client.fetch(`*[_type == "project" && defined(coverImage)][0]`);
           if (fallback) setHeroImage(urlFor(fallback.coverImage)?.url() ?? '');
