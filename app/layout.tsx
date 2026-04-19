@@ -35,6 +35,7 @@ export const metadata = {
   description: "Professional Gaffer and Lighting Technician based in London. Specializing in high-end Narrative, Commercial, and Music Video lighting.",
   keywords: ["Gaffer", "London Gaffer", "Lighting Technician", "Film Lighting", "Mark A Lane", "Cinematography"],
   metadataBase: new URL('https://mark-lane.co.uk'),
+  themeColor: '#000000',
   verification: {
     google: 'F48DdKNsdyL3gvU_KM5BqyXlJyTezMBaugzmaJJa0Lo',
   },
