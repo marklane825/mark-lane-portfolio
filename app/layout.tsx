@@ -2,8 +2,9 @@ import localFont from 'next/font/local'
 import SmoothScroll from '@/components/SmoothScroll'
 import "./globals.css";
 import PageTransition from '@/components/PageTransition';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
-// --- FONT CONFIGURATION ---
 const squareSansDisplay = localFont({
   src: [
     { path: '../public/fonts/SquareSansDisplay-Regular.otf', weight: '400', style: 'normal' },
@@ -11,7 +12,7 @@ const squareSansDisplay = localFont({
     { path: '../public/fonts/SquareSansDisplay-Bold.otf', weight: '700', style: 'normal' },
   ],
   variable: '--font-display',
-  display: 'swap', // <--- ADD THIS FOR PERFORMANCE
+  display: 'swap',
 })
 
 const squareSansText = localFont({
@@ -23,7 +24,7 @@ const squareSansText = localFont({
     { path: '../public/fonts/SquareSansText-BoldItalic.otf', weight: '700', style: 'italic' },
   ],
   variable: '--font-text',
-  display: 'swap', // <--- ADD THIS FOR PERFORMANCE
+  display: 'swap',
 })
 
 export const metadata = {
@@ -33,14 +34,10 @@ export const metadata = {
   },
   description: "Professional Gaffer and Lighting Technician based in London. Specializing in high-end Narrative, Commercial, and Music Video lighting.",
   keywords: ["Gaffer", "London Gaffer", "Lighting Technician", "Film Lighting", "Mark A Lane", "Cinematography"],
-  metadataBase: new URL('https://mark-lane.co.uk'),  
-  
-  // --- ADD THIS LINE HERE ---
+  metadataBase: new URL('https://mark-lane.co.uk'),
   verification: {
-    google: 'F48DdKNsdyL3gvU_KM5BqyXlJyTezMBaugzmaJJa0Lo', 
+    google: 'F48DdKNsdyL3gvU_KM5BqyXlJyTezMBaugzmaJJa0Lo',
   },
-  // --------------------------
-
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -53,7 +50,6 @@ export const metadata = {
       { rel: 'android-chrome-512x512', url: '/android-chrome-512x512.png' },
     ],
   },
-
   openGraph: {
     title: 'Mark A. Lane | Gaffer & Lighting Technician',
     description: 'London-based Gaffer for Narrative, Commercial, and Music Videos.',
@@ -61,8 +57,6 @@ export const metadata = {
     siteName: 'Mark A. Lane Lighting',
     locale: 'en_GB',
     type: 'website',
-    // Note: Because you have opengraph-image.webp in your folder, 
-    // Next.js will automatically handle the 'images' property for you!
   }
 };
 
@@ -79,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "addressCountry": "UK"
     },
     "sameAs": [
-      "https://instagram.com/mark.lane_" 
+      "https://instagram.com/mark.lane_"
     ],
     "knowsAbout": ["Lighting Design", "Cinematography", "Film Production", "Gaffing"]
   };
@@ -87,16 +81,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${squareSansDisplay.variable} ${squareSansText.variable}`} style={{ backgroundColor: 'black' }}>
       <head>
-        {/* MANUAL PRECONNECT FOR PERFORMANCE */}
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body style={{ backgroundColor: 'black', margin: 0 }}>
+        <Analytics />
+        <SpeedInsights />
         <SmoothScroll>
           <PageTransition>
             {children}
